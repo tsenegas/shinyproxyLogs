@@ -1,0 +1,19 @@
+url: https://tsenegas.github.io/shinyproxyLogs/
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+navbar:
+  structure:
+    left: [reference, articles, news]
+    right: [github]
+  components:
+    github:
+      icon: fa-github
+      href: https://github.com/tsenegas/shinyproxyLogs
+
+reference:
+  - title: "Core Functions"
+    contents:
+      - parse_log_filename
+      - analyze_logs
