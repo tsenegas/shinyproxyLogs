@@ -6,7 +6,11 @@
 #' @param filename Character. The full path to the log file.
 #' @return A data frame with the columns `specId`, `proxyId`, `startupTime`, and `logType`.
 #' @examples
-#' parse_log_filename("../../shinyproxy/shinyproxy/container-logs/logs/crash_simulator_43c8bf13-051f-4fe9-8362-a6b83016a218_05_Feb_2025_18_30_53_stderr.log")
+#' \dontrun{
+#'   parse_log_filename(
+#'   "path/to/containersLogs/log_file_(stdout|stderr).log"
+#'   )
+#' }
 #' @export
 #' @importFrom stringr str_match
 parse_log_filename <- function(filename) {
@@ -124,7 +128,12 @@ analyze_logs <- function(path_container_logs, path_shinylogs = NULL) {
   list(file_info = file_info, summary = summary_df)
 }
 
-# Internal helper function to read a log file (supports gzipped files)
+#' Read a Log File
+#'
+#' Internal function to read a log file, supporting both plain text and gzipped formats.
+#'
+#' @param file Character. The file path to read.
+#' @return A character vector of log lines.
 #' @keywords internal
 read_log_file <- function(file) {
   if (grepl("\\.gz$", file)) {
@@ -134,15 +143,19 @@ read_log_file <- function(file) {
   }
 }
 
-# Internal helper function to extract user and container mappings from log lines
+
+#' Extract User and Proxy Mappings
+#'
+#' Internal function to extract user and container mappings from log lines.
+#'
+#' @param log_lines A character vector containing log file lines.
+#' @return A tibble with `user`, `proxyId`, and `specId`.
 #' @keywords internal
 #' @importFrom tibble tibble
 extract_user_proxy_mapping <- function(log_lines) {
-  # Regex to extract user, proxyId, and specId
   pattern <- "\\[user=([^ ]+) proxyId=([^ ]+) specId=([^ ]+)\\]"
   matches <- stringr::str_match(log_lines, pattern)
 
-  # Create a tibble with the mapping (filtering out unmatched lines)
   tibble::tibble(
     user    = matches[, 2],
     proxyId = matches[, 3],
@@ -150,3 +163,4 @@ extract_user_proxy_mapping <- function(log_lines) {
   ) |>
     dplyr::filter(!is.na(user))
 }
+
