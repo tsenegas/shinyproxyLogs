@@ -1,0 +1,8 @@
+pandoc: '3.2'
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles: {}
+last_built: 2025-02-23T21:27Z
+urls:
+  reference: https://tsenegas.github.io/shinyproxyLogs/reference
+  article: https://tsenegas.github.io/shinyproxyLogs/articles
