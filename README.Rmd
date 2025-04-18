@@ -35,8 +35,13 @@ To use shinyproxyLogs, you must have the necessary access rights to the `shinypr
 
 ## Installation
 
-You can install the development version of shinyproxyLogs like so:
+From CRAN
 
+``` r
+install.packages("shinyproxyLogs")
+```
+
+You can install the development version of shinyproxyLogs like so:
 
 
 ``` r

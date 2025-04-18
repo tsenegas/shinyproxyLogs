@@ -38,6 +38,12 @@ logs directory before using this package.
 
 ## Installation
 
+From CRAN
+
+``` r
+install.packages("shinyproxyLogs")
+```
+
 You can install the development version of shinyproxyLogs like so:
 
 ``` r
